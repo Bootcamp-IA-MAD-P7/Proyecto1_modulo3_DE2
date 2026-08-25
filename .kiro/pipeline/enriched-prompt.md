@@ -7,7 +7,7 @@ mensajes crudos en una base de datos documental (MongoDB, actuando como Data Lak
 **une los fragmentos de datos de una misma persona** (Personal, Location, Professional, Bank, Net)
 en un único registro consolidado, y persiste el resultado limpio y estructurado en una base de
 datos relacional PostgreSQL (Data Warehouse). Todo el sistema se despliega en contenedores con
-Docker y docker-compose. El proyecto es un trabajo de equipo (4 personas) desarrollado sobre un
+Docker y docker-compose. El proyecto es un trabajo de equipo (3 personas) desarrollado sobre un
 Agentic Harness compartido versionado en el repositorio.
 
 ## Functional Requirements
@@ -34,7 +34,7 @@ Agentic Harness compartido versionado en el repositorio.
 - [NFR-5] Resiliencia: reintentos y tolerancia a fallos transitorios de Kafka/DB/Redis.
 - [NFR-6] Idempotencia en la persistencia (evitar duplicados al reprocesar).
 - [NFR-7] Configuración por variables de entorno (12-factor), sin secretos hardcodeados.
-- [NFR-8] Código mantenible y modular para permitir trabajo en paralelo de 4 personas.
+- [NFR-8] Código mantenible y modular para permitir trabajo en paralelo de 3 personas.
 - [NFR-9] Cobertura de tests: lineas >= 80%, ramas >= 75%, funciones >= 85%.
 
 ## Technical Context
@@ -50,7 +50,7 @@ Agentic Harness compartido versionado en el repositorio.
 - Base documental: MongoDB.
 - Control de versiones: GitHub. Ramas: `main` + `dev` + `feature/*`.
 - Gestión de proyecto: GitHub Issues + GitHub Projects (tablero Kanban).
-- Equipo de 4 personas con roles por área (ver .kiro/steering/30-team-roles.md).
+- Equipo de 3 personas con roles por área (ver .kiro/steering/30-team-roles.md).
 - Los datos llegan **fragmentados por tipo**, no agrupados; el join por persona es responsabilidad del ETL.
 - Los datos pueden ser **inconsistentes** (claves de unión imperfectas: Passport, Fullname, Address).
 

@@ -2,16 +2,15 @@
 inclusion: always
 ---
 
-# Equipo y Reparto de Trabajo (4 personas)
+# Equipo y Reparto de Trabajo (3 personas)
 
 ## Equipo
 
 | Rol | GitHub | Responsabilidad principal |
 |-----|--------|---------------------------|
-| Scrum Master + Persona C | **jzelada97** | warehouse + api + frontend; coordinación del equipo y del board |
-| Persona A | **abelstor** | consumer (Kafka) + cache (Redis) |
+| Scrum Master + Persona C | **jzelada97** | warehouse + api + frontend + documentación/board/demo/presentación; coordinación del equipo |
+| Persona A | **abelstor** | consumer (Kafka) + cache (Redis) + lake (MongoDB) |
 | Persona B | **karinaromerovasquez** | processing (join/normalización) — el core del ETL |
-| Persona D | **arnaldojrm4** | lake (MongoDB) + documentación + gestión del tablero + testing de la demo + presentación |
 
 Todos los roles son parte igual del equipo. El reparto es por área de foco, no por nivel.
 
@@ -30,10 +29,9 @@ Cada módulo tiene interfaces claras para poder trabajar en paralelo:
 | infra/monitoring | docker-compose, Prometheus, logs | - | entorno + métricas |
 
 ## Asignación por módulo (ajustable)
-- Persona A (abelstor): consumer + cache.
+- Persona A (abelstor): consumer + cache + lake (guardar crudo en MongoDB).
 - Persona B (karinaromerovasquez): processing (join/normalización) — es el corazón del proyecto.
-- Persona C (jzelada97, Scrum Master): warehouse + api + frontend.
-- Persona D (arnaldojrm4): lake (guardar crudo) + documentación + board + demo + presentación.
+- Persona C (jzelada97, Scrum Master): warehouse + api + frontend + documentación/board/demo/presentación.
 
 ## Cómo usar los agentes del harness
 Cada persona puede invocar los agentes definidos en `.kiro/agents/` para su módulo. Los agentes

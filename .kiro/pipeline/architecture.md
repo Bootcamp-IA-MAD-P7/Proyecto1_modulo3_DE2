@@ -14,7 +14,7 @@ Justificación:
 - **Warehouse (PostgreSQL)** guarda el dato curado y consolidado, listo para consulta/analítica.
 - **Redis** como caché intermedia resuelve el reto de *matching en tiempo real*: los fragmentos de
   una persona no llegan juntos, así que se bufferizan por clave hasta poder consolidar.
-- Modularidad por componentes = 4 personas trabajando en paralelo con interfaces claras.
+- Modularidad por componentes = equipo trabajando en paralelo con interfaces claras.
 
 Se descarta un monolito puro (no paraleliza bien el trabajo ni escala el consumer) y una
 arquitectura event-sourcing completa (sobredimensionada para el alcance pedagógico).
