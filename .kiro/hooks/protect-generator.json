@@ -1,0 +1,15 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Recordatorio: no leer el generador de datos",
+      "trigger": "PreToolUse",
+      "description": "Avisa antes de leer archivos que puedan pertenecer al generador de datos (caja negra).",
+      "matcher": "read_file|read_files|read_code",
+      "action": {
+        "type": "command",
+        "command": "$input = [Console]::In.ReadToEnd(); if ($input -match 'generator|generador|data_gen|datagen|producer|fake|faker') { Write-Output '{\\\"hookSpecificOutput\\\":{\\\"permissionDecision\\\":\\\"ask\\\",\\\"permissionDecisionReason\\\":\\\"El archivo podria pertenecer al generador de datos (caja negra). Recuerda la Regla #1: no leer el generador. Confirma solo si NO es codigo del generador.\\\"}}' }; exit 0"
+      }
+    }
+  ]
+}
