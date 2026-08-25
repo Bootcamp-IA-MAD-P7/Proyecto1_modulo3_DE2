@@ -8,8 +8,8 @@ inclusion: always
 
 | Rol | GitHub | Responsabilidad principal |
 |-----|--------|---------------------------|
-| Scrum Master + Persona C | **jzelada97** | warehouse + api + frontend + documentación/board/demo/presentación; coordinación del equipo |
-| Persona A | **abelstor** | consumer (Kafka) + cache (Redis) + lake (MongoDB) |
+| Scrum Master + Persona C | **jzelada97** | warehouse + api + frontend + docker (infra e2e) + Prometheus; coordinación del equipo |
+| Persona A | **abelstor** | consumer (Kafka) + cache (Redis) + lake (MongoDB) + documentación/board/demo/presentación |
 | Persona B | **karinaromerovasquez** | processing (join/normalización) — el core del ETL |
 
 Todos los roles son parte igual del equipo. El reparto es por área de foco, no por nivel.
@@ -29,9 +29,9 @@ Cada módulo tiene interfaces claras para poder trabajar en paralelo:
 | infra/monitoring | docker-compose, Prometheus, logs | - | entorno + métricas |
 
 ## Asignación por módulo (ajustable)
-- Persona A (abelstor): consumer + cache + lake (guardar crudo en MongoDB).
+- Persona A (abelstor): consumer + cache + lake (guardar crudo en MongoDB) + documentación/board/demo/presentación.
 - Persona B (karinaromerovasquez): processing (join/normalización) — es el corazón del proyecto.
-- Persona C (jzelada97, Scrum Master): warehouse + api + frontend + documentación/board/demo/presentación.
+- Persona C (jzelada97, Scrum Master): warehouse + api + frontend + docker (infra e2e) + Prometheus.
 
 ## Cómo usar los agentes del harness
 Cada persona puede invocar los agentes definidos en `.kiro/agents/` para su módulo. Los agentes
