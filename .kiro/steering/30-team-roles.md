@@ -4,11 +4,16 @@ inclusion: always
 
 # Equipo y Reparto de Trabajo (4 personas)
 
-## Perfiles
-- **3 perfiles técnicos** — desarrollo de componentes.
-- **1 perfil menos técnico** — documentación, gestión del tablero (GitHub Projects), testing manual
-  de la demo, y preparación de la presentación técnica. También puede llevar el README y los
-  diagramas con apoyo de los agentes.
+## Equipo
+
+| Rol | GitHub | Responsabilidad principal |
+|-----|--------|---------------------------|
+| Scrum Master + Persona C | **jzelada97** | warehouse + api + frontend; coordinación del equipo y del board |
+| Persona A | **abelstor** | consumer (Kafka) + cache (Redis) |
+| Persona B | **karinaromerovasquez** | processing (join/normalización) — el core del ETL |
+| Persona D | **arnaldojrm4** | lake (MongoDB) + documentación + gestión del tablero + testing de la demo + presentación |
+
+Todos los roles son parte igual del equipo. El reparto es por área de foco, no por nivel.
 
 ## Módulos independientes (para paralelizar sin pisarse)
 Cada módulo tiene interfaces claras para poder trabajar en paralelo:
@@ -24,11 +29,11 @@ Cada módulo tiene interfaces claras para poder trabajar en paralelo:
 | frontend | UI de consulta (Streamlit) | API/Postgres | UI |
 | infra/monitoring | docker-compose, Prometheus, logs | - | entorno + métricas |
 
-## Sugerencia de asignación inicial (ajustable)
-- Persona A (técnica): consumer + cache.
-- Persona B (técnica): processing (join/normalización) — es el corazón del proyecto.
-- Persona C (técnica): warehouse + api + frontend.
-- Persona D (menos técnica): lake básico (guardar crudo, sencillo) + documentación + board + demo + presentación.
+## Asignación por módulo (ajustable)
+- Persona A (abelstor): consumer + cache.
+- Persona B (karinaromerovasquez): processing (join/normalización) — es el corazón del proyecto.
+- Persona C (jzelada97, Scrum Master): warehouse + api + frontend.
+- Persona D (arnaldojrm4): lake (guardar crudo) + documentación + board + demo + presentación.
 
 ## Cómo usar los agentes del harness
 Cada persona puede invocar los agentes definidos en `.kiro/agents/` para su módulo. Los agentes

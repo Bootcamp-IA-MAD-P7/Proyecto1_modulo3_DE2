@@ -121,7 +121,7 @@ Proyecto1_modulo3_DE2/
 - **Redis**: buffer por clave con TTL para el matching de fragmentos que llegan desasociados.
 - **pydantic v2 / pydantic-settings**: validación y configuración 12-factor.
 - **FastAPI + uvicorn**: API async performante y con OpenAPI automática.
-- **Streamlit**: frontend mínimo con muy poco código (apto para el perfil menos técnico).
+- **Streamlit**: frontend mínimo con muy poco código.
 - **prometheus-client**: instrumentación estándar.
 - **pytest + pytest-cov + mongomock + fakeredis**: tests sin infra real.
 

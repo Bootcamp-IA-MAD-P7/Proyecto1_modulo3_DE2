@@ -50,7 +50,7 @@ Agentic Harness compartido versionado en el repositorio.
 - Base documental: MongoDB.
 - Control de versiones: GitHub. Ramas: `main` + `dev` + `feature/*`.
 - Gestión de proyecto: GitHub Issues + GitHub Projects (tablero Kanban).
-- Equipo de 4: uno con perfil no técnico (asignado a documentación, board, testing manual y presentación).
+- Equipo de 4 personas con roles por área (ver .kiro/steering/30-team-roles.md).
 - Los datos llegan **fragmentados por tipo**, no agrupados; el join por persona es responsabilidad del ETL.
 - Los datos pueden ser **inconsistentes** (claves de unión imperfectas: Passport, Fullname, Address).
 
