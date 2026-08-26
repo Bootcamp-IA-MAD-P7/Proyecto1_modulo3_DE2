@@ -7,7 +7,7 @@ mensajes crudos en una base de datos documental (MongoDB, actuando como Data Lak
 **une los fragmentos de datos de una misma persona** (Personal, Location, Professional, Bank, Net)
 en un único registro consolidado, y persiste el resultado limpio y estructurado en una base de
 datos relacional PostgreSQL (Data Warehouse). Todo el sistema se despliega en contenedores con
-Docker y docker-compose. El proyecto es un trabajo de equipo (3 personas) desarrollado sobre un
+Docker y docker-compose. El proyecto es un trabajo de equipo (2 personas) desarrollado sobre un
 Agentic Harness compartido versionado en el repositorio.
 
 ## Functional Requirements
@@ -34,7 +34,7 @@ Agentic Harness compartido versionado en el repositorio.
 - [NFR-5] Resiliencia: reintentos y tolerancia a fallos transitorios de Kafka/DB/Redis.
 - [NFR-6] Idempotencia en la persistencia (evitar duplicados al reprocesar).
 - [NFR-7] Configuración por variables de entorno (12-factor), sin secretos hardcodeados.
-- [NFR-8] Código mantenible y modular para permitir trabajo en paralelo de 3 personas.
+- [NFR-8] Código mantenible y modular para permitir trabajo en paralelo de 2 personas.
 - [NFR-9] Cobertura de tests: lineas >= 80%, ramas >= 75%, funciones >= 85%.
 
 ## Technical Context
@@ -50,7 +50,7 @@ Agentic Harness compartido versionado en el repositorio.
 - Base documental: MongoDB.
 - Control de versiones: GitHub. Ramas: `main` + `dev` + `feature/*`.
 - Gestión de proyecto: GitHub Issues + GitHub Projects (tablero Kanban).
-- Equipo de 3 personas con roles por área (ver .kiro/steering/30-team-roles.md).
+- Equipo de 2 personas con roles por área (ver .kiro/steering/30-team-roles.md).
 - Los datos llegan **fragmentados por tipo**, no agrupados; el join por persona es responsabilidad del ETL.
 - Los datos pueden ser **inconsistentes** (claves de unión imperfectas: Passport, Fullname, Address).
 
@@ -81,3 +81,13 @@ Agentic Harness compartido versionado en el repositorio.
 - Cualquier análisis del generador de datos o de su lógica interna.
 - Despliegue en cloud / CI-CD en plataformas externas (el "harness" aquí es agéntico + docker-compose local; GitHub Actions es opcional/stretch).
 - Análisis de negocio de RRHH (dashboards analíticos avanzados) más allá del frontend de consulta.
+
+## Extras "Experto+" (opcionales, solo si sobra tiempo)
+No son requisitos ni entregables comprometidos. Son ampliaciones a abordar únicamente si el equipo
+completa el nivel Experto con holgura. Detalle de encaje en `.kiro/pipeline/architecture.md` (sección 10).
+- [EXT-1] **Arquitectura Medallion** (Bronze/Silver/Gold): formalizar las capas de datos existentes
+  (Bronze = crudo Mongo, Silver = consolidado normalizado, Gold = tablas/vistas de consulta). Extra más barato.
+- [EXT-2] **Apache Airflow**: scheduler/orquestador de jobs batch (backfills, recálculo de Gold, limpieza del Lake). Complementa el streaming, no lo sustituye.
+- [EXT-3] **Apache Spark**: procesado de datos grandes / reprocesado masivo del Lake fuera del hot-path de streaming.
+- [EXT-4] **Balanceador de carga en la nube**: escalado horizontal del consumer/API en un entorno cloud (fuera del alcance docker-compose local).
+- Regla: estos extras van en ramas `feature/*` propias y no deben poner en riesgo los hitos Esencial→Experto.
