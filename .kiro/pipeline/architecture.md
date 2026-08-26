@@ -167,3 +167,28 @@ si el equipo lo prefiere; el borrador plano es suficiente para Esencial/Medio.
 - **Medio**: logging_conf + tests + docker-compose + Dockerfiles.
 - **Avanzado**: cache(Redis) + metrics(Prometheus) + api(FastAPI).
 - **Experto**: carga continua (loop del pipeline siempre activo) + frontend(Streamlit).
+
+## 10. Extras "Experto+" (opcionales, solo si sobra tiempo)
+
+Estas mejoras NO son necesarias para ningún hito entregable. Son ideas de ampliación que solo se
+abordan si el equipo termina Experto con holgura. La arquitectura actual está pensada para poder
+encajarlas sin reescribir el núcleo. Orden sugerido de menor a mayor esfuerzo:
+
+| Extra | Qué aporta | Encaje en la arquitectura actual | Esfuerzo | Riesgo |
+|-------|-----------|----------------------------------|----------|--------|
+| **Arquitectura Medallion** (Bronze/Silver/Gold) | Formaliza las capas de datos que ya tenemos y las hace explícitas | Bronze = crudo en Mongo (ya existe); Silver = normalizado/consolidado; Gold = tablas de consulta/agregados en Postgres para la API/frontend | Bajo | Bajo |
+| **Apache Airflow** (scheduler de jobs) | Orquestación programada de jobs batch (backfills, recálculo de Gold, limpieza del Lake, reportes) | DAG que invoca tareas del pipeline como jobs; convive con el streaming (Airflow para batch/programado, no para el consumer en vivo) | Medio | Medio |
+| **Apache Spark** (procesado de datos grandes) | Reprocesado masivo del Lake y joins/agregaciones a gran escala fuera del hot-path de streaming | Job Spark que lee de Mongo (Bronze), aplica normalización/consolidación en batch y escribe Silver/Gold en Postgres; reutiliza la lógica de `processing` como referencia | Alto | Alto |
+| **Balanceador de carga en la nube** | Escalado horizontal real del consumer/API detrás de un LB gestionado (ALB/NLB, GCP LB, etc.) | El consumer ya soporta varios en el mismo consumer group; la API es stateless -> detrás de un LB con varias réplicas. Requiere salir de docker-compose local a un entorno cloud | Alto | Alto |
+
+Notas de encaje:
+- **Medallion** es el extra más natural y barato: en gran medida solo renombra/documenta lo que el
+  pipeline ya hace (Bronze=Mongo crudo, Silver=consolidado normalizado, Gold=vistas/tablas de consulta).
+  Buen candidato si queda algo de tiempo.
+- **Airflow** y **Spark** cubren el flanco *batch/big-data* que complementa (no sustituye) el streaming
+  en tiempo real. Airflow programa; Spark procesa volumen. Mantener el streaming como camino principal.
+- **Balanceador de carga en la nube** queda fuera del alcance local (docker-compose) descrito en el
+  enriched-prompt; solo tiene sentido si se decide desplegar en cloud. Documentar como evolución, no
+  como entregable del harness local.
+- Regla de oro: ningún extra debe poner en riesgo los hitos Esencial -> Experto ya comprometidos. Se
+  abordan en ramas `feature/*` independientes y solo se integran si están estables.
