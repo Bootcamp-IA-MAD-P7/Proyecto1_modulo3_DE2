@@ -2,17 +2,16 @@
 inclusion: always
 ---
 
-# Equipo y Reparto de Trabajo (3 personas)
+# Equipo y Reparto de Trabajo (2 personas)
 
 ## Equipo
 
 | Rol | GitHub | Responsabilidad principal |
 |-----|--------|---------------------------|
-| Scrum Master + Persona C | **jzelada97** | warehouse + api + frontend + docker (infra e2e) + Prometheus; coordinación del equipo |
-| PM + Persona B | **karinaromerovasquez** | Project Manager; processing (join/normalización) — el core del ETL |
-| Persona A | **abelstor** | consumer (Kafka) + cache (Redis) + lake (MongoDB) + documentación/board/demo/presentación |
+| Scrum Master | **jzelada97** | lake (MongoDB) + warehouse + api + frontend + docker (infra e2e) + Prometheus + logs + documentación/board/demo/presentación; coordinación del equipo |
+| PM | **karinaromerovasquez** | Project Manager; processing (join/normalización, core del ETL) + consumer (Kafka) + cache (Redis) |
 
-Todos los roles son parte igual del equipo. El reparto es por área de foco, no por nivel.
+Equipo reducido a 2 tras la salida de otros miembros. El reparto es por área de foco, no por nivel.
 
 ## Módulos independientes (para paralelizar sin pisarse)
 Cada módulo tiene interfaces claras para poder trabajar en paralelo:
@@ -28,10 +27,9 @@ Cada módulo tiene interfaces claras para poder trabajar en paralelo:
 | frontend | UI de consulta (Streamlit) | API/Postgres | UI |
 | infra/monitoring | docker-compose, Prometheus, logs | - | entorno + métricas |
 
-## Asignación por módulo (ajustable)
-- Persona A (abelstor): consumer + cache + lake (guardar crudo en MongoDB) + documentación/board/demo/presentación.
-- Persona B (karinaromerovasquez, PM): processing (join/normalización) — es el corazón del proyecto.
-- Persona C (jzelada97, Scrum Master): warehouse + api + frontend + docker (infra e2e) + Prometheus.
+## Asignación por módulo (2 personas)
+- karinaromerovasquez (PM): processing (join/normalización, core del ETL) + consumer + cache.
+- jzelada97 (Scrum Master): lake + warehouse + api + frontend + docker + Prometheus + logs + documentación/board/demo/presentación.
 
 ## Roles de gestión
 - **Scrum Master**: jzelada97 — facilita el proceso, desbloquea al equipo, coordina el día a día.

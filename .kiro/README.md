@@ -10,7 +10,7 @@ equipo. Objetivo: que los 4 trabajemos con IA de forma consistente y sin pisarno
   - `00-critical-rules.md` — reglas innegociables (incluida la de NO leer el generador de datos).
   - `10-project-context.md` — qué construimos, esquemas de datos y claves de unión.
   - `20-conventions.md` — estructura de carpetas, estilo, tests y Definition of Done.
-  - `30-team-roles.md` — reparto de trabajo entre las 3 personas.
+  - `30-team-roles.md` — reparto de trabajo entre las 2 personas del equipo.
 - `agents/` — **Agentes especializados** por módulo (consumer, processing, warehouse, qa, etc.).
   Cada uno arranca ya sabiendo las reglas y el contexto.
 - `hooks/` — **Automatismos** compartidos (lint/tests al guardar, recordatorio de la regla del generador).
