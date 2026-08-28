@@ -4,15 +4,15 @@ inclusion: always
 
 # Reglas Críticas del Proyecto (LEER SIEMPRE)
 
-## 🚫 REGLA #1 — PROHIBIDO LEER EL GENERADOR DE DATOS
-El servidor Kafka y el generador de datos se proporcionan como **CAJA NEGRA**.
+## ✅ REGLA #1 — Generador de datos (fase de limpieza CERRADA)
+La fase de detección/limpieza/normalización de datos está terminada. El generador de
+datos ya puede incluirse en el repo y desplegarse si hace falta para la demo/despliegue.
 
-- NUNCA abras, leas, inspecciones ni hagas reverse engineering del código del generador de datos.
-- NUNCA leas archivos dentro del repositorio del generador salvo su README de instalación.
-- El generador SOLO se ejecuta con `docker compose up --build`. Nada más.
-- Violar esta regla puede suponer la descalificación del proyecto.
-- Si un archivo o carpeta parece pertenecer al generador (contiene la lógica de creación de
-  Personal/Location/Professional/Bank/Net data), NO lo leas y avisa al usuario.
+- La lógica de limpieza/matching NO debe basarse en leer el generador: se diseñó de forma
+  independiente y así se mantiene. No reintroduzcas conocimiento del generador en el ETL.
+- Está permitido incluir el generador en el repo y desplegarlo. Antes de redistribuir su
+  código, verifica que su licencia lo permite (si no trae licencia explícita, consúltalo).
+- Sigue tratando su salida (los mensajes Kafka) como el contrato de entrada del pipeline.
 
 ## 🔒 REGLA #2 — Datos sensibles
 El dataset contiene PII y datos financieros (Passport, IBAN, salario, email, teléfono, IPv4).
