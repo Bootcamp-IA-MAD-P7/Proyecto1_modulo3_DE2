@@ -1,5 +1,7 @@
 ---
-inclusion: always
+inclusion: auto
+name: project-context
+description: Contexto del proyecto HR Insights ETL — qué se construye, esquemas de datos que llegan (Personal, Location, Professional, Bank, Net), claves de unión/matching y stack acordado. Cargar cuando se trabaje en el pipeline, procesamiento, matching o decisiones de arquitectura de datos.
 ---
 
 # Contexto del Proyecto — HR Insights ETL

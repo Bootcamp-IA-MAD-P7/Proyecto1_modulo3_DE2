@@ -1,5 +1,7 @@
 ---
-inclusion: always
+inclusion: auto
+name: conventions
+description: Convenciones de código y estructura del proyecto — estructura de carpetas src/hr_etl, estilo Python (black, isort, ruff, type hints), umbrales de tests y Definition of Done. Cargar al escribir o refactorizar código, crear archivos nuevos o preparar PRs.
 ---
 
 # Convenciones de Código y Estructura
