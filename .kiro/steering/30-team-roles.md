@@ -1,5 +1,6 @@
 ---
-inclusion: always
+inclusion: manual
+name: team-roles
 ---
 
 # Equipo y Reparto de Trabajo (2 personas)
