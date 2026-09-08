@@ -10,18 +10,15 @@ import os
 import sys
 from pathlib import Path
 
-from dotenv import load_dotenv
-load_dotenv(Path(__file__).parent.parent / ".env")
+from dotenv import load_dotenv  # noqa: E402
 
-# Añadir el directorio actual al path para garantizar la resolución de módulos
+load_dotenv(Path(__file__).parent.parent / ".env")
 sys.path.append(str(Path(__file__).resolve().parent))
 
-import pandas as pd
-import requests
-import streamlit as st
-
-# Importación del módulo de asistente
-from assistant.bot import render_assistant_tab
+import pandas as pd  # noqa: E402
+import requests  # noqa: E402
+import streamlit as st  # noqa: E402
+from assistant.bot import render_assistant_tab  # noqa: E402
 
 API_URL = os.getenv("API_URL", "http://localhost:8000")
 PAGE_SIZE = 25
